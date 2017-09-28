@@ -2,27 +2,31 @@ package FileManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class UserContainer implements Serializable {
+public class UserContainer implements Serializable  {
     private List<User> users = new ArrayList<>();
 
 
     public void add(User user) {
-        User newUser = new User();
-      users.add(newUser) ;
+      users.add(user) ;
 
     }
 
     public void delete(String id) {
-        for (User deletedUser : users) {
-            if (users.contains(id)){
-                users.remove(deletedUser);
+        Iterator<User> it = users.iterator();
+        while (it.hasNext()) {
+            if (it.next().getId() == id) {
+                it.remove();
+                break;
             }
         }
     }
     public void showAll(){
-        System.out.println(users.toString());
+        for(User user : users) {
+            System.out.println((" Id: " +user.getId()));
+        }
     }
 //    public void update (long id,User user){
 //        for (int i = 0; i <users.size() ; i++) {

@@ -76,7 +76,7 @@ public class Menu  {
         System.out.println("Enter the id");
         String id = scanner.readLine();
         userContainer.delete(id);
-        System.out.println("Users has been deleted");
+        System.out.println("User has been deleted");
     }
     public  void  show(){
         userContainer.showAll();
