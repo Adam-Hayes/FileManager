@@ -1,6 +1,8 @@
 package FileManager;
 
 
+import java.util.InputMismatchException;
+
 public class Menu {
     UserContainer userContainer;
     PhotoContainer photoContainer;
@@ -13,9 +15,9 @@ public class Menu {
                 "3 - Delete user\n" +
                 "4 - Update user infomation\n" +
                 "5 - Show user's photos\n" +
-                "6 - Save the information" +
+                "6 - Save the information \n" +
                 "7 - Print  help menu \n" +
-                "0 - Exit ");
+                "0 - Exit  ");
     }
 
     public Menu(UserContainer userContainer, PhotoContainer photoContainer) {
@@ -23,37 +25,43 @@ public class Menu {
         this.photoContainer = photoContainer;
     }
 
-    public void Start() {
+    public void start() throws InputMismatchException {
         Menu.printHelp();
-        int i = -1;
-        while (i != 0) {
-            i = scanner.readInt();
+        try {
+            int i = -1;
+            while (i != 0) {
+                i = scanner.readInt();
 
-            switch (i) {
+                switch (i) {
 
-                case 1:
-                    addUser();
-                    Menu.printHelp();
-                    break;
-                case 2:
-                    addPhoto();
-                    Menu.printHelp();
-                    break;
-                case 3:
-                    deleteUser();
-                    Menu.printHelp();
-                    break;
-                case 4:
-                    show();
-                    Menu.printHelp();
-                    break;
+                    case 1:
+                        addUser();
+                        Menu.printHelp();
+                        break;
+                    case 2:
+                        addPhoto();
+                        Menu.printHelp();
+                        break;
+                    case 3:
+                        deleteUser();
+                        Menu.printHelp();
+                        break;
+                    case 4:
+                        show();
+                        Menu.printHelp();
+                        break;
 
+                    case 0:
+                        return;
 
-                case 0:
-                    return;
+                }
             }
+
+        } catch (InputMismatchException imo) {
+            System.out.println("input a number");
         }
     }
+
 
     public void addUser() {
         System.out.println("Enter the name");
