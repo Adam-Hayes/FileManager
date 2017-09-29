@@ -1,11 +1,7 @@
 package FileManager;
 
-import Exercise_1.ScannerWrapper;
 
-import java.util.Scanner;
-
-
-public class Menu  {
+public class Menu {
     UserContainer userContainer;
     PhotoContainer photoContainer;
     ScannerWrapper scanner = new ScannerWrapper();
@@ -22,63 +18,74 @@ public class Menu  {
                 "0 - Exit ");
     }
 
-    public Menu(UserContainer userContainer,PhotoContainer photoContainer) {
+    public Menu(UserContainer userContainer, PhotoContainer photoContainer) {
         this.userContainer = userContainer;
         this.photoContainer = photoContainer;
     }
 
-    public void Start(){
+    public void Start() {
         Menu.printHelp();
         int i = -1;
-        while (i!=0){
+        while (i != 0) {
             i = scanner.readInt();
 
-            switch (i){
+            switch (i) {
 
-                case 1 : addUser();
-                        break;
-                case 2 : addPhoto();
-                        break;
-                case 3 : deleteUser();
-                        break;
-                case 4 : show();
-                        break;
+                case 1:
+                    addUser();
+                    Menu.printHelp();
+                    break;
+                case 2:
+                    addPhoto();
+                    Menu.printHelp();
+                    break;
+                case 3:
+                    deleteUser();
+                    Menu.printHelp();
+                    break;
+                case 4:
+                    show();
+                    Menu.printHelp();
+                    break;
 
 
-                case 0 : return;
+                case 0:
+                    return;
             }
         }
     }
-    public  void addUser(){
+
+    public void addUser() {
         System.out.println("Enter the name");
         String name = scanner.readLine();
-        System.out.println("Enter the user id");
-        String id = scanner.readLine();
         System.out.println("Enter the login");
         String login = scanner.readLine();
         System.out.println("Enter the password");
         String password = scanner.readLine();
-        User user = new User(name,id,login,password);
+        User user = new User(name, login, password);
         userContainer.add(user);
     }
-    public void addPhoto(){
+
+    public void addPhoto() {
         System.out.println("Enter the photo id");
         long id = scanner.readInt();
         System.out.println("Enter the weight");
         int weight = scanner.readInt();
         System.out.println("Enter the height");
         int height = scanner.readInt();
-        Photo photo = new Photo(id,weight,height);
+        Photo photo = new Photo(id, weight, height);
         photoContainer.add(photo);
 
     }
-    public void deleteUser(){
-        System.out.println("Enter the id");
-        String id = scanner.readLine();
-        userContainer.delete(id);
+
+    public void deleteUser() {
+        System.out.println("Enter the login");
+        String login = scanner.readLine();
+        userContainer.delete(login);
         System.out.println("User has been deleted");
     }
-    public  void  show(){
+
+    public void show() {
         userContainer.showAll();
     }
 }
