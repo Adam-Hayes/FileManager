@@ -1,8 +1,7 @@
 package FileManager;
 
-import Exercise_1.ScannerWrapper;
-
 import java.io.FileInputStream;
+import java.util.InputMismatchException;
 
 public class FileManagerMain {
     public static void main(String[] args) {
@@ -11,10 +10,15 @@ public class FileManagerMain {
         PhotoContainer photoContainer = new PhotoContainer();
         UserFile userFile = new UserFile();
         PhotoFile photoFile = new PhotoFile();
-        Menu mainMenu = new Menu(userContainer,photoContainer);
+        Menu mainMenu = new Menu(userContainer, photoContainer);
 
-        mainMenu.Start();
-
+        try {
+            mainMenu.start();
+        } catch (InputMismatchException ime) {
+            System.out.println("Input the number please");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 }
 
